@@ -16,6 +16,11 @@ datasource db {
 model Client {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
-  email     String   @unique
-  name      String?
+  title     String
+  author    String
+  date      String
+  category  String
+  image     String
+  intro     String
+  tags      String // Store tags as a comma-separated string
 }

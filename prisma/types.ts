@@ -7,11 +7,16 @@
  * the createdAt field to be optional, it is genereated by Prisma.
  */
 
-interface Client {
+interface Article {
   id?: number,
   createdAt?: Date,
-  name: string,
-  email: string,
+  title: string,
+  author: string,
+  date: string,
+  category: string,
+  image: string,
+  intro: string,
+  tags: string,
 }
 
-export { Client };
+export { Article };

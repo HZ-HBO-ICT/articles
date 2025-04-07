@@ -1,10 +1,12 @@
 -- CreateTable
-CREATE TABLE "Client" (
+CREATE TABLE "Articles" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "email" TEXT NOT NULL,
-    "name" TEXT
+    "title": TEXT,
+    "author": TEXT,
+    "date": TEXT,
+    "category": TEXT,
+    "image": TEXT,
+    "intro": TEXT,
+    "tags": TEXT,
 );
-
--- CreateIndex
-CREATE UNIQUE INDEX "Client_email_key" ON "Client"("email");
