@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 // import { PrismaClient } from '../../node_modules/.prisma/client.ts';
 // import { PrismaClient } from '../../node_modules/.prisma/client/default.js';
 import { PrismaClient } from '@prisma/client';
-import { Client} from '../../prisma/types.ts';
+import { Article } from '../../prisma/types.ts';
 const prisma: PrismaClient = new PrismaClient();
 
 /**
@@ -14,7 +14,7 @@ interface ClientResponse {
     title: string
     url: string
   },
-  data: Client[]
+  data: Article[]
 }
 
 /**
@@ -24,14 +24,14 @@ interface ClientResponse {
  * @returns {Promise<void>}
  */
 export async function getClients(req: Request, res: Response): Promise<void> {
-  const clients: Client[] = await prisma.client.findMany();
+  const articles: Article[] = await prisma.client.findMany();
   const clientReponse: ClientResponse = {
     meta: {
-      count: clients.length,
-      title: 'All clients',
+      count: articles.length,
+      title: 'All articles',
       url: req.url
     },
-    data: clients
+    data: articles
   };
   res.status(200).send(clientReponse);
 }
@@ -44,10 +44,10 @@ export async function getClients(req: Request, res: Response): Promise<void> {
  */
 export async function getClient(req: Request, res: Response): Promise<void> {
   const id: number = parseInt(req.params.id);
-  const client: Client = await prisma.client.findUnique({
+  const article: Article = await prisma.client.findUnique({
     where: {
       id: id
     }
   });
-  res.status(200).send(client);
+  res.status(200).send(article);
 }

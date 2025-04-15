@@ -10,7 +10,6 @@
     "seed": "tsx prisma/seed.ts"
   },
   "scripts": {
-    "postinstall": "prisma generate",
     "dev": "nodemon --watch src/start.ts",
     "start": "tsx src/start.ts"
   },

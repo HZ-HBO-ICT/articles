@@ -53,4 +53,13 @@ You can change the ports of your server via `variables.env`
 With our `npmr run` commands we do not transpile our ts files to the filesystem. This is on purpose, we choose to transpile in memory. Hot-module replacement is also in place. If your run `npm run dev` and you update your code, the server will automatically restart.
 
 ## Database connectivity
-In this project [Prisma](https://www.prisma.io/docs/orm/overview/introduction/what-is-prisma) is used for Object Relation Mapping. It comes with all kind of utilities as models, seeds and migrations.
+In this project [Prisma](https://www.prisma.io/docs/orm/overview/introduction/what-is-prisma) is used for Object Relation Mapping. It comes with all kind of utilities as models, seeds and migrations. 
+
+New install
+1. Update the scheme
+2. Create new db file (filename should corresponds to the actual name of the content)
+3. update types
+4. update the migration file
+5. Run the commands
+   1. npx prisma migrate dev --name init
+   2. npx prisma db seed

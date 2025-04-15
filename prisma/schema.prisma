@@ -13,14 +13,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Client {
+model Article {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   title     String
   author    String
   date      String
-  category  String
+  category  Category[]
+  tags      TagsOnPosts[]
   image     String
   intro     String
-  tags      String // Store tags as a comma-separated string
+}
+
+model Tag {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  articles  TagsOnPosts[]
+}
+
+model TagsOnPosts {
+  tag Tag @relation(fields: [tagId], references: [id])
+  tagId Int
+  article Article @relation(fields: [articleId], references: [id])
+  articleId Int
+  assignedAt DateTime @default(now())
+  @@id([tagId, articleId])
+}
+
+model Category {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  name      String
+  articleId Int
+  article   Article @relation(fields: [articleId], references: [id])
 }

@@ -13,10 +13,29 @@ interface Article {
   title: string,
   author: string,
   date: string,
-  category: string,
-  image: string,
-  intro: string,
-  tags: string,
+  category: Category[]
+  tags: TagsOnPosts[]
+  image: string
+  intro: string
 }
 
-export { Article };
+interface Category {
+  id?: number,
+  createdAt?: Date,
+  name: string,
+}
+
+interface TagsOnPosts {
+  tagId: number,
+  articleId: number,
+  assignedAt?: Date,
+}
+
+interface Tag {
+  id?: number,
+  createdAt?: Date,
+  name: string,
+  articles?: Article[]
+}
+
+export { Article, Category, TagsOnPosts, Tag };
