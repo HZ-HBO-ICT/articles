@@ -8,7 +8,7 @@ const prisma: PrismaClient = new PrismaClient();
 /**
  * Interface for the response object
  */
-interface ClientResponse {
+interface ArticleResponse {
   meta: {
     count: number
     title: string
@@ -23,9 +23,9 @@ interface ClientResponse {
  * @param res {Response} - The Response object
  * @returns {Promise<void>}
  */
-export async function getClients(req: Request, res: Response): Promise<void> {
-  const articles: Article[] = await prisma.client.findMany();
-  const clientReponse: ClientResponse = {
+export async function getArticles(req: Request, res: Response): Promise<void> {
+  const articles: Article[] = await prisma.article.findMany();
+  const clientReponse: ArticleResponse = {
     meta: {
       count: articles.length,
       title: 'All articles',
@@ -42,9 +42,9 @@ export async function getClients(req: Request, res: Response): Promise<void> {
  * @param res {Response} - The Response object
  * @returns {Promise<void>}
  */
-export async function getClient(req: Request, res: Response): Promise<void> {
+export async function getArticle(req: Request, res: Response): Promise<void> {
   const id: number = parseInt(req.params.id);
-  const article: Article = await prisma.client.findUnique({
+  const article: Article = await prisma.article.findUnique({
     where: {
       id: id
     }

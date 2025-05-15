@@ -1,5 +1,5 @@
 import Express, { Router, Response, NextFunction } from 'express';
-import { getClient, getClients } from '../controllers/articlesController.ts';
+import { getArticle, getArticles } from '../controllers/articlesController.ts';
 const router: Router = Express.Router();
 
 // router.get('/', (req: Request, res: Response, next: NextFunction) => {
@@ -14,7 +14,7 @@ router.get('/', (res: Response): void => {
   });
 });
 
-router.get('/articles', getClients);
-router.get('/articles/:id', getClient);
+router.get('/articles', getArticles);
+router.get('/articles/:id', getArticle);
 
 export default router;

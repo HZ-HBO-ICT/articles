@@ -13,8 +13,7 @@ interface Article {
   title: string,
   author: string,
   date: string,
-  category: Category[]
-  tags: TagsOnPosts[]
+  categoryId: number,
   image: string
   intro: string
 }
@@ -25,7 +24,7 @@ interface Category {
   name: string,
 }
 
-interface TagsOnPosts {
+interface TagsOnArticles {
   tagId: number,
   articleId: number,
   assignedAt?: Date,
@@ -38,4 +37,4 @@ interface Tag {
   articles?: Article[]
 }
 
-export { Article, Category, TagsOnPosts, Tag };
+export { Article, Category, TagsOnArticles, Tag };

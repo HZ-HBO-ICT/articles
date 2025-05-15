@@ -19,8 +19,9 @@ model Article {
   title     String
   author    String
   date      String
-  category  Category[]
-  tags      TagsOnPosts[]
+  categoryId Int
+  category  Category @relation(fields: [categoryId], references: [id])
+  tags      TagsOnArticles[]
   image     String
   intro     String
 }
@@ -29,10 +30,10 @@ model Tag {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   name      String
-  articles  TagsOnPosts[]
+  articles  TagsOnArticles[]
 }
 
-model TagsOnPosts {
+model TagsOnArticles {
   tag Tag @relation(fields: [tagId], references: [id])
   tagId Int
   article Article @relation(fields: [articleId], references: [id])
@@ -45,6 +46,5 @@ model Category {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   name      String
-  articleId Int
-  article   Article @relation(fields: [articleId], references: [id])
+  articles  Article[]
 }
