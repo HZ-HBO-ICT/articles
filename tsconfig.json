@@ -12,8 +12,8 @@
         "noEmitOnError": true,
         "module": "NodeNext",
         "moduleResolution": "NodeNext",
-        "allowImportingTsExtensions": true,
-        "emitDeclarationOnly": true,
+        // "allowImportingTsExtensions": true,
+        // "emitDeclarationOnly": true,
         "declaration": true,
         // "rootDir": "./src"
     },

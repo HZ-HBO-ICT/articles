@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 // reference a type from the generated Prisma Client
 // import type { Client } from '@prisma/client';
 const prisma: PrismaClient = new PrismaClient();
-import { Article, Category, Tag, TagsOnArticles } from './types.ts';
+import { Article, Category, Tag, TagsOnArticles } from './types.js';
 
 const tags: Tag[] = [
   { name: 'EV' },

@@ -1,7 +1,7 @@
 import Express, { Router, Response, NextFunction } from 'express';
-import { getArticle, getArticles } from '../controllers/articlesController.ts';
-import { getTags, getTag } from '../controllers/tagsController.ts';
-import { authenticateToken } from '../middleware/authentication/authenticationHandler.ts';
+import { getArticle, getArticles } from '../controllers/articlesController.js';
+import { getTags, getTag } from '../controllers/tagsController.js';
+import { authenticateToken } from '../middleware/authentication/authenticationHandler.js';
 import Cors from 'cors';
 const router: Router = Express.Router();
 
