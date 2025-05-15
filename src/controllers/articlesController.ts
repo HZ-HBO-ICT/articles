@@ -1,6 +1,4 @@
 import { Request, Response } from 'express';
-// import { PrismaClient } from '../../node_modules/.prisma/client.ts';
-// import { PrismaClient } from '../../node_modules/.prisma/client/default.js';
 import { PrismaClient } from '@prisma/client';
 import { Article } from '../../prisma/types.ts';
 const prisma: PrismaClient = new PrismaClient();
@@ -10,11 +8,11 @@ const prisma: PrismaClient = new PrismaClient();
  */
 interface ArticleResponse {
   meta: {
-    count: number
+    count?: number
     title: string
     url: string
   },
-  data: Article[]
+  data: string[] | Article
 }
 
 /**
@@ -24,14 +22,20 @@ interface ArticleResponse {
  * @returns {Promise<void>}
  */
 export async function getArticles(req: Request, res: Response): Promise<void> {
-  const articles: Article[] = await prisma.article.findMany();
+  const articles: Article[] = await prisma.article.findMany({
+  });
+
+  const articleUrls: string[] = articles.map((article: Article) => {
+    return `/articles/${article.id}`;
+  });
+
   const clientReponse: ArticleResponse = {
     meta: {
-      count: articles.length,
+      count: articleUrls.length,
       title: 'All articles',
       url: req.url
     },
-    data: articles
+    data: articleUrls
   };
   res.status(200).send(clientReponse);
 }
@@ -49,5 +53,12 @@ export async function getArticle(req: Request, res: Response): Promise<void> {
       id: id
     }
   });
-  res.status(200).send(article);
+  const clientReponse: ArticleResponse = {
+    meta: {
+      title: 'One specific article',
+      url: req.url
+    },
+    data: article
+  };
+  res.status(200).send(clientReponse);
 }
