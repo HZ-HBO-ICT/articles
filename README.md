@@ -65,3 +65,25 @@ Especially if you want to add a different database; use these steps. You can fin
 5. Run the commands
    1. npx prisma migrate dev --name init // or other name for the migration
    2. npx prisma db seed
+
+## Implemented routes
+
+|Method|Url|Middleware|
+|-|-|-|
+|GET|`/articles`|Error handler|
+|GET|`/articles/{id}`|Error handler
+|GET|`/tags`|Error handler; Cors|
+|GET|`/tags/{id}`|Error handler; Cors; Authentication|
+
+The response is structered like this json
+```javascript
+   meta: {
+      count: 'length of response',
+      title: 'title of response',
+      url:'url to original request'
+    },
+    data: []
+```
+
+### Authentication
+One of the routes uses `Authorization` header in the request and sets a `Bearer Token`. The token should be provided by the owner of this repository.
