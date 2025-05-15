@@ -25,8 +25,8 @@ export async function getTags(req: Request, res: Response): Promise<void> {
   const tags: Tag[] = await prisma.tag.findMany({
   });
 
-  const articleUrls: string[] = tags.map((article: Tag) => {
-    return `/articles/${article.id}`;
+  const articleUrls: string[] = tags.map((tag: Tag) => {
+    return `/tags/${tag.id}`;
   });
 
   const clientReponse: TagResponse = {

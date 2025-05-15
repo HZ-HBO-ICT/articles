@@ -43,11 +43,11 @@ We use ES6 module system to [import](https://developer.mozilla.org/en-US/docs/We
 
 ## Variables.env
 
-We save credentials to other services in a `variables.env` file. This file is included in this template. However, it is common use not to include it in a public repository. There are some default key value pairs included to demonstrate its working.
+We save credentials to other services in a `.env` file. This file is included in this template. However, it is common use not to include it in a public repository. There are some default key value pairs included to demonstrate its working.
 
 ## Ports
 
-You can change the ports of your server via `variables.env`
+You can change the ports of your server via `.env`
 
 ## Transpile in memory
 With our `npm run` commands we do not transpile our ts files to the filesystem. This is on purpose, we choose to transpile in memory. Hot-module replacement is also in place. If your run `npm run dev` and you update your code, the server will automatically restart.
@@ -55,11 +55,13 @@ With our `npm run` commands we do not transpile our ts files to the filesystem. 
 ## Database connectivity
 In this project [Prisma](https://www.prisma.io/docs/orm/overview/introduction/what-is-prisma) is used for Object Relation Mapping. It comes with all kind of utilities as models, seeds and migrations. 
 
-New install
-1. Update the scheme
+## New install
+Especially if you want to add a different database; use these steps. You can find the files in the prisma folder
+1. Update the `schema.prisma` file
+   1. If you change the schema please regenarate the prisma client via `prisma generate`
 2. Create new db file (filename should corresponds to the actual name of the content)
-3. update types
-4. update the migration file
+3. update `types.ts`
+4. update the `seed.ts`
 5. Run the commands
    1. npx prisma migrate dev --name init // or other name for the migration
    2. npx prisma db seed
