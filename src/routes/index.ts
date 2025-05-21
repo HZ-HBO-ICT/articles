@@ -14,7 +14,9 @@ router.get('/', (req: Express.Request, res: Response, next: NextFunction): void 
 
 router.get('/articles', getArticles);
 router.get('/articles/:id', getArticle);
-router.get('/tags', Cors(), getTags);
-router.get('/tags/:id', Cors(), authenticateToken, getTag);
+// router.get('/tags', Cors(), getTags);
+// router.get('/tags/:id', Cors(), authenticateToken, getTag);
+router.get('/tags', getTags);
+router.get('/tags/:id', getTag);
 
 export default router;
